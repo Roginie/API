@@ -86,7 +86,7 @@ def graficos(df_selecionado):
         st.warning("Nenhum dado disponível para gerar gráficos.")
         return
 
-    graf1, graf2, graf3, graf4, graf5 = st.tabs(["Gráfico de Barras", "Gráfico de Linhas", "Gráfico de Pizza", "Gráfico de Dispersão", "Gráfico Horizontal"])
+    graf1, graf2, graf3, graf4, graf5, graf6, = st.tabs(["Gráfico de Barras", "Gráfico de Linhas", "Gráfico de Pizza", "Gráfico de Dispersão", "Gráfico Horizontal"])
 
 
     with graf1:
@@ -120,6 +120,7 @@ def graficos(df_selecionado):
         st.plotly_chart(fig_valores3, use_container_width=True)
 
     with graf4:
+
         st.write("Gráfico de Dispersão")
         fig_valores4 = px.scatter(df_selecionado,
                                   x="marca",
@@ -139,7 +140,17 @@ def graficos(df_selecionado):
                              title="<b>Valores por Marca - Barras Horizontais</b>")
         st.plotly_chart(fig_horizontais, use_container_width=True)
 
+   # with graf6:
+        st.write("Grafico Linha")
 
+        dados6 = df_selecionado[["valor", "marca"]]
+
+        fig_valores6 = px.area(dados6,
+                               x = dados6.index,
+                               y = "valor",
+                               title="Grafica de Linha"
+                               )
+        st.area_chart(fig_valores6)
 
 
 def barraprogresso():
